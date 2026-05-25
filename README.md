@@ -38,7 +38,7 @@ Proyek ini dirancang **monorepo** dengan backend API terpisah dan frontend SPA, 
 webkeuangan/
 ├── backend/                 # API REST (Node.js + Express)
 │   ├── server.js            # Entry point, auth, transaksi, admin
-│   ├── routes/features.js   # Dompet, recurring, utang, kategori, cron
+│   ├── routes/features.js   # Dompet, utang, kategori, cron alert
 │   ├── lib/                 # Wallet, cron, OTP, enkripsi, email
 │   ├── config/              # Konstanta (OTP, rate limit, admin)
 │   ├── migrate*.js          # Skrip migrasi database
@@ -99,7 +99,6 @@ webkeuangan/
 | **Kategori** | Kategori custom + warna; rename otomatis sinkron ke transaksi & anggaran |
 | **Anggaran** | Limit per kategori per bulan; peringatan ≥80% di UI & email |
 | **Tabungan** | Target tabungan + progres setoran |
-| **Berulang** | Aturan harian / mingguan / bulanan → auto-posting transaksi (cron) |
 | **Langganan** | Netflix, Spotify, dll.; reminder jatuh tempo (cron + email) |
 | **Utang & Piutang** | Catat utang (`owe`) / piutang (`lent`), cicilan parsial, status lunas |
 | **Jurnal** | Catatan harian + mood terkait keuangan |
@@ -109,7 +108,7 @@ webkeuangan/
 
 ### 🔔 Notifikasi & Otomatisasi
 
-- **Cron harian** (`/api/cron/daily`, jam 01:00 UTC di Vercel): jalankan transaksi berulang + kirim email alert anggaran/langganan/tabungan
+- **Cron harian** (`/api/cron/daily`, jam 01:00 UTC di Vercel): kirim email alert anggaran/langganan/tabungan
 - Preferensi alert per user (budget / subscription / savings) — bisa dimatikan
 - Log `alert_sent_log` mencegah email duplikat dalam satu hari
 
@@ -146,19 +145,7 @@ function balanceDelta(type, amount) {
 
 Transfer memakai `SELECT ... FOR UPDATE` pada dompet asal & tujuan, validasi saldo cukup, lalu `UPDATE balance` atomik dalam satu transaksi SQL.
 
-### 3. Jadwal transaksi berulang
-
-Fungsi `computeNextRun(frequency, fromDate, dayOfMonth, dayOfWeek)`:
-
-| Frequency | Logika |
-|-----------|--------|
-| `daily` | `fromDate + 1 hari` |
-| `weekly` | Hari berikutnya sesuai `day_of_week` (0–6) |
-| `monthly` | Bulan berikutnya, tanggal = `day_of_month` (maks 28, hindari overflow) |
-
-Cron memilih aturan dengan `active = 1 AND next_run <= today`, insert transaksi, lalu update `next_run`.
-
-### 4. Cicilan utang (partial payment)
+### 3. Cicilan utang (partial payment)
 
 ```
 applied = min(nominal_bayar, sisa_utang)
@@ -167,7 +154,7 @@ paid_amount += applied
 
 Tidak boleh bayar jika utang sudah lunas; edit utang hanya jika `paid_amount = 0`.
 
-### 5. OTP registrasi & reset password
+### 4. OTP registrasi & reset password
 
 - OTP 5 digit: `crypto.randomInt(10000, 100000)`
 - Hash OTP disimpan (bukan plain text)
@@ -175,7 +162,7 @@ Tidak boleh bayar jika utang sudah lunas; edit utang hanya jika `paid_amount = 0
 - OTP kedaluwarsa **5 menit**
 - Cooldown kirim ulang per email
 
-### 6. Enkripsi vault akun (AES-256-CBC)
+### 5. Enkripsi vault akun (AES-256-CBC)
 
 ```
 Key = scrypt(JWT_SECRET, 'salt', 32 bytes)
@@ -184,11 +171,11 @@ Cipher = AES-256-CBC(plaintext)
 Stored = hex(IV) + ':' + hex(ciphertext)
 ```
 
-### 7. Rate limiter API (in-memory)
+### 6. Rate limiter API (in-memory)
 
 Sliding window per IP: **40 request / 60 detik** → block **2 menit**. Cocok untuk lingkungan serverless Vercel (tanpa Redis).
 
-### 8. Alert email (agregasi SQL)
+### 7. Alert email (agregasi SQL)
 
 - **Anggaran:** `SUM(expense)` per kategori bulan berjalan ≥ **80%** limit → email peringatan/habis
 - **Langganan:** `next_billing_date` dalam 3 hari ke depan
@@ -196,9 +183,9 @@ Sliding window per IP: **40 request / 60 detik** → block **2 menit**. Cocok un
 
 Dedup: `INSERT IGNORE` ke `alert_sent_log` dengan key unik per hari.
 
-### 9. Rename kategori (konsistensi data)
+### 8. Rename kategori (konsistensi data)
 
-Saat nama kategori diubah, satu transaksi SQL memperbarui `transactions`, `budgets`, dan `recurring_rules` yang memakai nama lama.
+Saat nama kategori diubah, satu transaksi SQL memperbarui `transactions` dan `budgets` yang memakai nama lama.
 
 ---
 
@@ -381,7 +368,6 @@ Authorization: Bearer <JWT_TOKEN>
 | Transaksi | `/api/transactions` | GET, POST |
 | Transaksi | `/api/transactions/:id` | PUT, DELETE |
 | Dompet | `/api/wallets`, `/api/wallets/transfer` | GET, POST, PUT, DELETE |
-| Berulang | `/api/recurring` | CRUD |
 | Kategori | `/api/categories` | CRUD |
 | Utang | `/api/debts`, `/api/debts/:id/pay` | CRUD + POST pay |
 | Tabungan | `/api/savings` | CRUD |
@@ -422,11 +408,6 @@ Authorization: Bearer <JWT_TOKEN>
 1. Menu **Anggaran** — set limit per kategori untuk bulan `YYYY-MM`
 2. Dashboard menampilkan peringatan jika pengeluaran ≥ 80%
 3. **Pengaturan Alert** — aktif/nonaktif email budget, langganan, tabungan
-
-### Transaksi berulang
-
-1. Menu **Berulang** — buat aturan (gaji bulanan, langganan, dll.)
-2. Cron server akan memposting transaksi otomatis pada `next_run`
 
 ### Fitur lain
 
