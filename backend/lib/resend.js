@@ -1,11 +1,9 @@
 const nodemailer = require('nodemailer');
-const fs = require('fs');
 
 // Function to write logs to file
 function writeLog(message) {
   const timestamp = new Date().toISOString();
-  const logMessage = `[${timestamp}] ${message}\n`;
-  fs.appendFileSync('email-debug.log', logMessage);
+  console.log(`[${timestamp}] ${message}`);
 }
 
 function getSmtpConfig() {
