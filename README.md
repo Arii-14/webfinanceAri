@@ -103,7 +103,8 @@ webkeuangan/
 | **Utang & Piutang** | Catat utang (`owe`) / piutang (`lent`), cicilan parsial, status lunas |
 | **Jurnal** | Catatan harian + mood terkait keuangan |
 | **Vault Akun** | Simpan kredensial akun (bank, e-wallet, dll.) terenkripsi |
-| **Dashboard** | Grafik doughnut & bar, ringkasan bulanan, export **Excel (.xlsx)** |
+| **Dashboard** | Grafik doughnut & bar, visual sisa anggaran (progress bar), export **Excel (.xlsx)** |
+| **Panduan (FAQ)** | Tutorial interaktif di dalam aplikasi khusus pengguna awam |
 | **Profil** | Username, email, foto profil (crop + max 8 MB, base64) |
 
 ### 🔔 Notifikasi & Otomatisasi
@@ -393,9 +394,10 @@ Authorization: Bearer <JWT_TOKEN>
 
 ### Dashboard & transaksi
 
-1. Tab **Dashboard** — lihat ringkasan pemasukan/pengeluaran & grafik
-2. **+ Tambah Transaksi** — pilih tipe, nominal, kategori, dompet (opsional), tanggal
-3. **Export Excel** — unduh semua transaksi ke `Laporan_Transaksi.xlsx`
+1. Tab **Dashboard** — lihat ringkasan pemasukan/pengeluaran, grafik, dan **visual sisa anggaran**.
+2. **Panduan (FAQ)** — klik tombol Panduan di sudut kanan atas untuk tutorial fitur khusus pengguna awam.
+3. **+ Tambah Transaksi** — pilih tipe, nominal, kategori, dompet (opsional), tanggal
+4. **Export Excel** — unduh semua transaksi ke `Laporan_Transaksi.xlsx`
 
 ### Dompet & transfer
 
