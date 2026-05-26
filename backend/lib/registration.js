@@ -9,13 +9,11 @@ const {
   OTP_MAX_ATTEMPTS,
   OTP_COOLDOWN_MINUTES,
 } = require('../config/constants');
-const fs = require('fs');
 
 // Function to write logs to file
 function writeLog(message) {
   const timestamp = new Date().toISOString();
-  const logMessage = `[${timestamp}] ${message}\n`;
-  fs.appendFileSync('registration-debug.log', logMessage);
+  console.log(`[${timestamp}] ${message}`);
 }
 
 function generateOtpCode() {
