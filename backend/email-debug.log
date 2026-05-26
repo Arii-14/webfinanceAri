@@ -1,0 +1,20 @@
+[2026-05-24T10:08:25.582Z] sendOtpEmail called with environment: {"SMTP_SERVER":"smtp-relay.brevo.com","SMTP_PORT":"587","SMTP_LOGIN":"ac5bc2001@smtp-brevo.com","SMTP_PASSWORD":"SET","FROM_EMAIL":"ac5bc2001@smtp-brevo.com","to":"muhammadariusni@gmail.com"}
+[2026-05-24T10:08:25.584Z] Creating SMTP transporter...
+[2026-05-24T10:08:25.586Z] Sending email to: muhammadariusni@gmail.com from: ac5bc2001@smtp-brevo.com
+[2026-05-24T10:08:27.219Z] Email sent successfully: <23ba1e32-00e1-9526-daf1-08e869b458d9@smtp-brevo.com>
+[2026-05-24T10:13:22.754Z] sendOtpEmail called with environment: {"SMTP_SERVER":"smtp-relay.brevo.com","SMTP_PORT":"587","SMTP_LOGIN":"ac5bc2001@smtp-brevo.com","SMTP_PASSWORD":"SET","FROM_EMAIL":"verified@example.com","to":"muhammadariusni@gmail.com"}
+[2026-05-24T10:13:22.755Z] Creating SMTP transporter...
+[2026-05-24T10:13:22.758Z] Sending email to: muhammadariusni@gmail.com from: verified@example.com
+[2026-05-24T10:13:24.438Z] Email sent successfully: <68fbc0e7-7f5e-da7e-d421-3f218d5d9c77@example.com>
+[2026-05-24T10:27:24.407Z] sendOtpEmail called with environment: {"SMTP_SERVER":"smtp-relay.brevo.com","SMTP_PORT":"587","SMTP_LOGIN":"ac5bc2001@smtp-brevo.com","SMTP_PASSWORD":"SET","FROM_EMAIL":"tendouariisu@gmail.com","to":"muhammadariusni@gmail.com"}
+[2026-05-24T10:27:24.408Z] Creating SMTP transporter...
+[2026-05-24T10:27:24.411Z] Sending email to: muhammadariusni@gmail.com from: tendouariisu@gmail.com
+[2026-05-24T10:27:26.032Z] Email sent successfully: <7b516ab2-2067-5eba-72e7-24a2000b4567@gmail.com>
+[2026-05-24T10:30:21.423Z] sendOtpEmail called with environment: {"SMTP_SERVER":"smtp-relay.brevo.com","SMTP_PORT":"587","SMTP_LOGIN":"ac5bc2001@smtp-brevo.com","SMTP_PASSWORD":"SET","FROM_EMAIL":"tendouariisu@gmail.com","to":"art.ofwar14042006@gmail.com"}
+[2026-05-24T10:30:21.423Z] Creating SMTP transporter...
+[2026-05-24T10:30:21.424Z] Sending email to: art.ofwar14042006@gmail.com from: tendouariisu@gmail.com
+[2026-05-24T10:30:22.874Z] Email sent successfully: <01c25da8-9e47-4eb4-ab69-1c1a1b01686f@gmail.com>
+[2026-05-24T10:46:26.021Z] sendOtpEmail called with environment: {"SMTP_SERVER":"smtp-relay.brevo.com","SMTP_PORT":"587","SMTP_LOGIN":"ac5bc2001@smtp-brevo.com","SMTP_PASSWORD":"SET","FROM_EMAIL":"tendouariisu@gmail.com","to":"art.of.war14042006@gmail.com"}
+[2026-05-24T10:46:26.022Z] Creating SMTP transporter...
+[2026-05-24T10:46:26.024Z] Sending email to: art.of.war14042006@gmail.com from: tendouariisu@gmail.com
+[2026-05-24T10:46:27.647Z] Email sent successfully: <f5c72c35-d11b-9d2f-a4a8-e03ea5cddb76@gmail.com>

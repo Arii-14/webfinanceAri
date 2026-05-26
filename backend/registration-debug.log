@@ -1,0 +1,8 @@
+[2026-05-24T10:28:22.052Z] requestRegisterOtp called with: {"username":"d","email":"muhammadariusni@gmail.com","ip":"::1"}
+[2026-05-24T10:30:20.908Z] requestRegisterOtp called with: {"username":"ari","email":"art.ofwar14042006@gmail.com","ip":"::1"}
+[2026-05-24T10:30:21.422Z] About to send registration OTP email to: art.ofwar14042006@gmail.com
+[2026-05-24T10:30:22.875Z] Registration OTP email sent successfully to: art.ofwar14042006@gmail.com
+[2026-05-24T10:46:25.441Z] requestRegisterOtp called with: {"username":"ari","email":"art.of.war14042006@gmail.com","ip":"::1"}
+[2026-05-24T10:46:26.020Z] About to send registration OTP email to: art.of.war14042006@gmail.com
+[2026-05-24T10:46:27.647Z] Registration OTP email sent successfully to: art.of.war14042006@gmail.com
+[2026-05-24T10:50:25.276Z] requestRegisterOtp called with: {"username":"ari","email":"art.of.war14042006@gmail.com","ip":"::1"}

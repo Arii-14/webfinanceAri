@@ -1,0 +1,9 @@
+module.exports = {
+  ADMIN_EMAIL: 'muhammadariusni@gmail.com',
+  OTP_LENGTH: 5,
+  OTP_EXPIRY_MINUTES: 5,
+  OTP_MAX_ATTEMPTS: 3,
+  OTP_COOLDOWN_MINUTES: 10,
+  IP_RATE_LIMIT_MAX: 5,
+  IP_RATE_LIMIT_WINDOW_MINUTES: 15,
+};
